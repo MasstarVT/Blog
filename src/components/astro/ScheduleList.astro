@@ -1,0 +1,57 @@
+---
+// Upcoming stream segments. Times render in UTC at build time and are re-rendered in the
+// visitor's zone by local-time.js, which also hides segments that ended after the build.
+import LocalTime from './LocalTime.astro'
+import EmptyState from './EmptyState.astro'
+import { urls } from '../../config/site.mjs'
+
+interface Segment {
+  id: string
+  title: string
+  category: string | null
+  start: string
+  end: string | null
+  recurring: boolean
+  canceled: boolean
+}
+interface Props {
+  segments: Segment[]
+  vacation?: { start: string; end: string } | null
+  /** Max items; the browser refresh (schedule-refresh.js) respects it too */
+  limit?: number
+}
+const { segments, vacation, limit = 25 } = Astro.props
+const endOf = (s: Segment) => s.end ?? new Date(new Date(s.start).getTime() + 3 * 3600_000).toISOString()
+---
+{vacation && (
+  <p class="vacation-note">
+    🌴 Taking a break from <LocalTime iso={vacation.start} kind="date" /> to <LocalTime iso={vacation.end} kind="date" /> — see you after!
+  </p>
+)}
+<ul class="schedule-list" data-schedule-list data-limit={limit}>
+  {segments.slice(0, limit).map((s) => (
+    <li class:list={['schedule-item', { 'is-canceled': s.canceled }]} data-ends={endOf(s)}>
+      <div class="schedule-date" aria-hidden="true">
+        <LocalTime iso={s.start} kind="weekday" class="sd-weekday" />
+        <LocalTime iso={s.start} kind="day" class="sd-day" />
+        <LocalTime iso={s.start} kind="month" class="sd-month" />
+      </div>
+      <div class="schedule-info">
+        <span class="schedule-title">{s.title || 'Stream'}</span>
+        <span class="schedule-meta">
+          <LocalTime iso={s.start} kind="datetime" />
+          {s.category && <span>{s.category}</span>}
+          {s.recurring && <span class="chip">Weekly</span>}
+          {s.canceled && <span class="chip chip-canceled">Canceled</span>}
+        </span>
+      </div>
+    </li>
+  ))}
+</ul>
+<EmptyState
+  title="No streams scheduled right now"
+  text="Streams get announced in the Discord and on X — follow on Twitch to get a ping when I go live."
+  action={{ href: urls.twitchSchedule, label: 'Twitch schedule ↗' }}
+  hidden={segments.length > 0}
+  data-schedule-empty
+/>

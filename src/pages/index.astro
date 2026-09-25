@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ProfileHero from '../components/react/ProfileHero.jsx'
+import LinkGrid from '../components/react/LinkGrid.jsx'
+import LiveStatus from '../components/react/LiveStatus.jsx'
+import SectionPanel from '../components/astro/SectionPanel.astro'
+import ScheduleList from '../components/astro/ScheduleList.astro'
+import VideoGrid from '../components/astro/VideoGrid.astro'
+import PostCard from '../components/astro/PostCard.astro'
+import EmptyState from '../components/astro/EmptyState.astro'
+import XFeed from '../components/astro/social/XFeed.astro'
+import BlueskyFeed from '../components/astro/social/BlueskyFeed.astro'
+import DiscordCard from '../components/astro/social/DiscordCard.astro'
+import YouTubeFeed from '../components/astro/social/YouTubeFeed.astro'
+import TikTokCard from '../components/astro/social/TikTokCard.astro'
+import { site, urls } from '../config/site.mjs'
+import { getData, getLiveSnapshot, getUpcomingSegments } from '../lib/data.js'
+import { getPublishedPosts } from '../lib/posts.js'
+import { formatCount } from '../lib/format.mjs'
+
+const twitch = getData('twitch')
+const discord = getData('discord')
+const live = getLiveSnapshot()
+const posts = await getPublishedPosts()
+const upcoming = getUpcomingSegments(5)
+
+const metrics = [
+  ...site.staticMetrics,
+  { value: twitch.user.followers != null ? formatCount(twitch.user.followers) : '—', label: 'Twitch followers' },
+  ...(discord.members != null ? [{ value: formatCount(discord.members), label: 'Discord members' }] : []),
+]
+
+const videos = twitch.videos.slice(0, 6).map((v: any) => ({
+  id: v.id, title: v.title, url: v.url, thumbnail: v.thumbnail, date: v.publishedAt,
+  durationSec: v.durationSec, views: v.views, label: v.type,
+}))
+const clips = twitch.clips.slice(0, 6).map((c: any) => ({
+  id: c.id, title: c.title, url: c.url, thumbnail: c.thumbnail, date: c.createdAt,
+  durationSec: c.durationSec, views: c.views,
+}))
+---
+<BaseLayout>
+  <ProfileHero
+    client:load
+    badges={site.hero.badges}
+    title={site.name}
+    description={site.hero.description}
+    tagline={site.hero.tagline}
+    live={live}
+    avatar={site.avatar}
+    actions={[
+      { href: urls.twitch, label: 'Watch Live', variant: 'primary', target: '_blank' },
+      { href: urls.discordInvite, label: 'Join the Discord', variant: 'ghost', target: '_blank' },
+    ]}
+    metrics={metrics}
+  />
+
+  <LinkGrid client:visible variant="dock" links={site.links} groups={site.linkGroups} />
+
+  <SectionPanel id="stream" title="Stream" subtitle="Live status, what's coming up, and where to catch it." action={{ href: '/schedule/', label: 'Full schedule' }}>
+    <div class="stream-layout">
+      <LiveStatus client:load live={live} login={site.twitch.login} offlineImage={twitch.user.banner} />
+      <div class="schedule-block">
+        <h3>Upcoming streams</h3>
+        <ScheduleList segments={upcoming} vacation={twitch.schedule.vacation} limit={5} />
+        <div class="schedule-actions">
+          <a class="cta-button ghost" href="/schedule.ics">Add to calendar</a>
+        </div>
+        <p class="schedule-note" data-local-zone>Times shown in UTC.</p>
+      </div>
+    </div>
+  </SectionPanel>
+
+  <SectionPanel id="latest-posts" title="Latest posts" subtitle="Stream recaps, dev logs and whatever else is on my mind." action={{ href: '/blog/', label: 'All posts' }}>
+    {posts.length
+      ? <ul class="post-list">{posts.slice(0, 3).map((post) => <li><PostCard post={post} /></li>)}</ul>
+      : <EmptyState title="No posts yet" text="The first one is coming soon." />}
+  </SectionPanel>
+
+  <SectionPanel id="videos" title="Recent streams & clips" subtitle="Catch up on what you missed." action={{ href: urls.twitchVideos, label: 'All videos', external: true }}>
+    {videos.length > 0 && (
+      <div class="video-section">
+        <h3>Past broadcasts</h3>
+        <VideoGrid items={videos} embed="twitch-video" />
+      </div>
+    )}
+    {clips.length > 0 && (
+      <div class="video-section">
+        <h3>Clips</h3>
+        <VideoGrid items={clips} embed="twitch-clip" />
+      </div>
+    )}
+    {videos.length === 0 && clips.length === 0 && (
+      <EmptyState
+        title="Nothing here yet"
+        text="Past broadcasts and clips show up here after streams. Twitch keeps VODs for a limited time, so catch them while they're fresh!"
+        action={{ href: urls.twitchVideos, label: 'Browse on Twitch ↗' }}
+      />
+    )}
+  </SectionPanel>
+
+  <div class="social-grid">
+      <SectionPanel id="x" title="On X" subtitle="Announcements, clips and random thoughts." action={{ href: urls.x, label: `@${site.x.handle}`, external: true }}>
+        <XFeed />
+      </SectionPanel>
+      <SectionPanel id="bluesky" title="On Bluesky" subtitle="Another social space." action={{ href: urls.bluesky, label: 'Profile', external: true }}>
+        <BlueskyFeed limit={3} />
+      </SectionPanel>
+      <SectionPanel id="discord" title="Community" subtitle="Hang out between streams." class="span-2">
+        <DiscordCard />
+      </SectionPanel>
+      {site.youtube.channelId && (
+        <SectionPanel id="youtube" title="YouTube" subtitle="Latest uploads." class="span-2" action={urls.youtube ? { href: urls.youtube, label: 'Channel', external: true } : undefined}>
+          <YouTubeFeed />
+        </SectionPanel>
+      )}
+      {site.tiktok.handle && (
+        <SectionPanel id="tiktok" title="TikTok" subtitle="Short clips and highlights." class="span-2">
+          <TikTokCard />
+        </SectionPanel>
+      )}
+  </div>
+</BaseLayout>
+

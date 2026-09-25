@@ -1,0 +1,32 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "id": "UExhYmMx",
+      "snippet": {
+        "publishedAt": "2026-09-22T10:00:00Z",
+        "channelId": "UCtestchannel0000000000",
+        "title": "VTuber setup tour",
+        "thumbnails": {
+          "default": { "url": "https://i.ytimg.com/vi/abcDEF12345/default.jpg", "width": 120, "height": 90 },
+          "high": { "url": "https://i.ytimg.com/vi/abcDEF12345/hqdefault.jpg", "width": 480, "height": 360 }
+        },
+        "resourceId": { "kind": "youtube#video", "videoId": "abcDEF12345" }
+      },
+      "contentDetails": { "videoId": "abcDEF12345", "videoPublishedAt": "2026-09-21T18:00:00Z" }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "id": "UExhYmMy",
+      "snippet": {
+        "publishedAt": "2026-09-01T10:00:00Z",
+        "title": "Private video",
+        "thumbnails": {},
+        "resourceId": { "kind": "youtube#video", "videoId": "privXYZ9876" }
+      },
+      "contentDetails": { "videoId": "privXYZ9876" }
+    }
+  ],
+  "pageInfo": { "totalResults": 2, "resultsPerPage": 12 }
+}

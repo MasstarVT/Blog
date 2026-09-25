@@ -1,0 +1,26 @@
+{
+  "did": "did:plc:7jwmzsge6mgbvtbwco6pmhfw",
+  "handle": "mass.masstar.org",
+  "displayName": "Mass 🔥❄️ | Vtuber | Vacay Arc Be Back Nov 17th",
+  "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:7jwmzsge6mgbvtbwco6pmhfw/bafkreiez5kcxdsfoyqocrsrj64at4aujtayhayxswrbgstoajlp27jezsy",
+  "associated": {
+    "lists": 0,
+    "feedgens": 0,
+    "starterPacks": 0,
+    "labeler": false,
+    "activitySubscription": {
+      "allowSubscriptions": "followers"
+    }
+  },
+  "labels": [],
+  "createdAt": "2024-10-17T02:28:52.412Z",
+  "description": "I’m Mass, A Chaotic Fire & Ice Demon Wolf. I stream on Twitch. Expect unexpected chaos and a whole lotta fun! 😈❄️🎮\ncarrd.masstar.org",
+  "indexedAt": "2024-10-19T22:32:11.007Z",
+  "followersCount": 65,
+  "followsCount": 151,
+  "postsCount": 51,
+  "pinnedPost": {
+    "cid": "bafyreiha3ouknzgsowuhicq3cs4ptfjroswvt4xeflg4zzotzowjxznamu",
+    "uri": "at://did:plc:7jwmzsge6mgbvtbwco6pmhfw/app.bsky.feed.post/3l6vjykq5dl2c"
+  }
+}

@@ -1,0 +1,24 @@
+---
+// Renders a UTC date at build time; src/scripts/local-time.js re-renders it in the visitor's zone.
+import { formatDate } from '../../lib/format.mjs'
+
+type Kind = 'date' | 'datetime' | 'time' | 'weekday' | 'day' | 'month' | 'relative'
+interface Props {
+  iso: string
+  kind?: Kind
+  class?: string
+  /** Calendar dates (e.g. a post's pubDate) — show as-is in UTC instead of converting to the visitor's zone */
+  utc?: boolean
+}
+const { iso, kind = 'date', class: className, utc = false } = Astro.props
+const fallback: Record<Kind, Intl.DateTimeFormatOptions> = {
+  date: { dateStyle: 'medium' },
+  datetime: { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' },
+  time: { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' },
+  weekday: { weekday: 'short' },
+  day: { day: 'numeric' },
+  month: { month: 'short' },
+  relative: { dateStyle: 'medium' },
+}
+---
+<time datetime={iso} data-local={utc ? undefined : kind} class={className}>{formatDate(iso, fallback[kind])}</time>

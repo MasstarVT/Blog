@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "1970000000000000002",
+      "edit_history_tweet_ids": ["1970000000000000002"],
+      "created_at": "2026-09-24T20:15:00.000Z",
+      "text": "Going live in 10! Q&amp;A + games &gt; sleep https://t.co/abc123"
+    },
+    {
+      "id": "1970000000000000001",
+      "edit_history_tweet_ids": ["1970000000000000001"],
+      "created_at": "2026-09-20T12:00:00.000Z",
+      "text": "New schedule is up 📅"
+    },
+    {
+      "id": "not-a-number",
+      "created_at": "2026-09-19T12:00:00.000Z",
+      "text": "ignored"
+    }
+  ],
+  "meta": { "result_count": 3, "newest_id": "1970000000000000002", "oldest_id": "1970000000000000001" }
+}

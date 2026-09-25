@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "id": "PopularButOlderClip-abc",
+      "url": "https://clips.twitch.tv/PopularButOlderClip-abc",
+      "embed_url": "https://clips.twitch.tv/embed?clip=PopularButOlderClip-abc",
+      "broadcaster_id": "139905616",
+      "broadcaster_name": "MasstarVT",
+      "creator_id": "1",
+      "creator_name": "ClipperOne",
+      "video_id": "2300000001",
+      "game_id": "509658",
+      "language": "en",
+      "title": "The bonk heard around the world",
+      "view_count": 500,
+      "created_at": "2026-08-01T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/PopularButOlderClip-abc/preview-480x272.jpg",
+      "duration": 28.5,
+      "vod_offset": 1200,
+      "is_featured": false
+    },
+    {
+      "id": "NewerClip-def",
+      "url": "https://clips.twitch.tv/NewerClip-def",
+      "embed_url": "https://clips.twitch.tv/embed?clip=NewerClip-def",
+      "broadcaster_id": "139905616",
+      "broadcaster_name": "MasstarVT",
+      "creator_id": "2",
+      "creator_name": "",
+      "video_id": "",
+      "game_id": "509658",
+      "language": "en",
+      "title": "Mushroom betrayal",
+      "view_count": 20,
+      "created_at": "2026-09-10T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/NewerClip-def/preview-480x272.jpg",
+      "duration": 14.04,
+      "vod_offset": null,
+      "is_featured": false
+    }
+  ],
+  "pagination": {}
+}

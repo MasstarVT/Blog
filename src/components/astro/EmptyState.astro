@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string
+  text?: string
+  action?: { href: string; label: string }
+  hidden?: boolean
+  [key: string]: unknown
+}
+const { title, text, action, hidden, ...rest } = Astro.props
+---
+<div class="empty-state" hidden={hidden} {...rest}>
+  <strong>{title}</strong>
+  {text && <p>{text}</p>}
+  {action && <a class="cta-button ghost" href={action.href} target="_blank" rel="noopener noreferrer">{action.label}</a>}
+  <slot />
+</div>

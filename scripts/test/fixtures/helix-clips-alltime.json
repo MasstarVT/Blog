@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": "AllTimeTop-111",
+      "url": "https://clips.twitch.tv/AllTimeTop-111",
+      "broadcaster_id": "139905616",
+      "creator_name": "ClipperThree",
+      "title": "Legendary fail",
+      "view_count": 2000,
+      "created_at": "2025-01-01T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AllTimeTop-111/preview-480x272.jpg",
+      "duration": 30
+    },
+    {
+      "id": "PopularButOlderClip-abc",
+      "url": "https://clips.twitch.tv/PopularButOlderClip-abc",
+      "broadcaster_id": "139905616",
+      "creator_name": "ClipperOne",
+      "title": "The bonk heard around the world",
+      "view_count": 500,
+      "created_at": "2026-08-01T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/PopularButOlderClip-abc/preview-480x272.jpg",
+      "duration": 28.5
+    },
+    {
+      "id": "AllTimeSecond-222",
+      "url": "https://clips.twitch.tv/AllTimeSecond-222",
+      "broadcaster_id": "139905616",
+      "creator_name": "ClipperFour",
+      "title": "Chat takes over",
+      "view_count": 900,
+      "created_at": "2025-06-01T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AllTimeSecond-222/preview-480x272.jpg",
+      "duration": 22.2
+    },
+    {
+      "id": "AllTimeThird-333",
+      "url": "https://clips.twitch.tv/AllTimeThird-333",
+      "broadcaster_id": "139905616",
+      "creator_name": "ClipperFive",
+      "title": "Not needed",
+      "view_count": 800,
+      "created_at": "2024-06-01T20:00:00Z",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AllTimeThird-333/preview-480x272.jpg",
+      "duration": 10
+    }
+  ],
+  "pagination": {}
+}

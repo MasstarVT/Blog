@@ -1,0 +1,14 @@
+---
+import VideoGrid from '../VideoGrid.astro'
+import EmptyState from '../EmptyState.astro'
+import { getData } from '../../../lib/data.js'
+import { urls } from '../../../config/site.mjs'
+
+const yt = getData('youtube')
+const items = yt.videos.slice(0, 6).map((v: any) => ({
+  id: v.id, title: v.title, url: v.url, thumbnail: v.thumbnail, date: v.publishedAt,
+}))
+---
+{items.length > 0
+  ? <VideoGrid items={items} embed="youtube" />
+  : <EmptyState title="No videos yet" action={urls.youtube ? { href: urls.youtube, label: 'Open YouTube ↗' } : undefined} />}

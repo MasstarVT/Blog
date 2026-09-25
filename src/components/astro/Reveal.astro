@@ -1,0 +1,11 @@
+---
+// Static port of the Website's FadeInUp: fades/slides in once when scrolled into view (src/scripts/reveal.js)
+interface Props {
+  delay?: number
+  class?: string
+  as?: string
+}
+const { delay = 0, class: className, as = 'div' } = Astro.props
+const Tag: any = as
+---
+<Tag class:list={['reveal', className]} style={delay ? `--delay: ${delay}s` : undefined}><slot /></Tag>

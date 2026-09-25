@@ -1,0 +1,76 @@
+---
+import { render } from 'astro:content'
+import { Image } from 'astro:assets'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHeader from '../../layouts/PageHeader.astro'
+import LocalTime from '../../components/astro/LocalTime.astro'
+import TagChip from '../../components/astro/TagChip.astro'
+import GlowPanel from '../../components/astro/GlowPanel.astro'
+import { getPublishedPosts, postUrl } from '../../lib/posts.js'
+import { site } from '../../config/site.mjs'
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts()
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1] ?? null, older: posts[i + 1] ?? null },
+  }))
+}
+
+const { post, newer, older } = Astro.props
+const { Content } = await render(post)
+const { title, description, pubDate, updatedDate, tags, cover, coverAlt, vod, draft } = post.data
+const canonical = new URL(postUrl(post), Astro.site).toString()
+const shareX = `https://x.com/intent/post?text=${encodeURIComponent(title)}&url=${encodeURIComponent(canonical)}&via=${site.x.handle}`
+const shareBsky = `https://bsky.app/intent/compose?text=${encodeURIComponent(`${title} ${canonical}`)}`
+---
+<BaseLayout
+  title={title}
+  description={description || site.description}
+  type="article"
+  image={cover?.src}
+  imageAlt={coverAlt}
+  publishedTime={pubDate.toISOString()}
+  modifiedTime={updatedDate?.toISOString()}
+  tags={tags}
+>
+  <article class="article">
+    <PageHeader eyebrow="Blog" title={title} subtitle={description}>
+      <div class="post-meta">
+        <LocalTime iso={pubDate.toISOString()} kind="date" utc />
+        {updatedDate && <span class="dot">Updated <LocalTime iso={updatedDate.toISOString()} kind="date" utc /></span>}
+        <span class="dot">{post.minutes} min read</span>
+        {draft && <span class="chip draft-chip">Draft</span>}
+      </div>
+      {tags.length > 0 && <ul class="tag-row" aria-label="Tags">{tags.map((tag: string) => <li><TagChip tag={tag} /></li>)}</ul>}
+    </PageHeader>
+
+    {cover && (
+      <figure class="article-cover">
+        <Image src={cover} alt={coverAlt ?? ''} width={1100} loading="eager" />
+      </figure>
+    )}
+
+    <GlowPanel class="hub-panel article-body">
+      {vod && (
+        <p class="vacation-note">🎬 <a href={vod} target="_blank" rel="noopener noreferrer">Watch the related video ↗</a> <span class="updated-note">({new URL(vod).hostname.replace(/^www./, '')})</span></p>
+      )}
+      <div class="prose">
+        <Content />
+      </div>
+    </GlowPanel>
+
+    <div class="share-row">
+      <span>Share:</span>
+      <a class="tag-chip" href={shareX} target="_blank" rel="noopener noreferrer">X</a>
+      <a class="tag-chip" href={shareBsky} target="_blank" rel="noopener noreferrer">Bluesky</a>
+    </div>
+
+    {(newer || older) && (
+      <nav class="post-nav" aria-label="More posts">
+        {older && <a class="prev" href={postUrl(older)}><span>← Older</span>{older.data.title}</a>}
+        {newer && <a class="next" href={postUrl(newer)}><span>Newer →</span>{newer.data.title}</a>}
+      </nav>
+    )}
+  </article>
+</BaseLayout>

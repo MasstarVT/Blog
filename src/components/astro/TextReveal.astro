@@ -1,0 +1,13 @@
+---
+// Static port of the Website's TextReveal: each word blurs/slides in, staggered (src/scripts/reveal.js).
+// Words stay real text separated by real spaces, so screen readers, find and copy all work.
+interface Props {
+  text: string
+  delay?: number
+}
+const { text, delay = 0.1 } = Astro.props
+const words = String(text).split(/\s+/).filter(Boolean)
+---
+<span class="text-reveal" style={`--tr-delay: ${delay}s`}>{words.map((word, i) => (
+  <Fragment><span class="tr-word" style={`--i: ${i}`}>{word}</span>{i < words.length - 1 ? ' ' : ''}</Fragment>
+))}</span>

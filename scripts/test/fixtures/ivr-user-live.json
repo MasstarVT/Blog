@@ -1,0 +1,22 @@
+[
+  {
+    "banned": false,
+    "displayName": "MasstarVT",
+    "login": "masstarvt",
+    "id": "139905616",
+    "bio": "Synthetic live fixture.",
+    "followers": 120,
+    "logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/example-profile_image-600x600.png",
+    "banner": "http://insecure.example/banner.png",
+    "roles": { "isPreAffiliate": false, "isAffiliate": true, "isPartner": false, "isStaff": null },
+    "stream": {
+      "title": "  Cozy chaos with chat  ",
+      "id": "40000000000",
+      "createdAt": "2026-09-25T17:00:00Z",
+      "type": "live",
+      "viewersCount": 37,
+      "game": { "displayName": "Just Chatting", "id": "509658" }
+    },
+    "lastBroadcast": { "startedAt": "2026-09-25T17:00:00.123456Z", "title": "Cozy chaos with chat" }
+  }
+]

@@ -1,0 +1,11 @@
+---
+// Static port of the Website's GlowPanel: the mouse-follow glow is wired up by src/scripts/glow-panel.js
+interface Props {
+  as?: string
+  class?: string
+  [key: string]: unknown
+}
+const { as = 'div', class: className, ...rest } = Astro.props
+const Tag: any = as
+---
+<Tag class:list={['glow-panel', className]} data-glow {...rest}><slot /></Tag>

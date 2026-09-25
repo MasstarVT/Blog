@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHeader from '../layouts/PageHeader.astro'
+import ScheduleList from '../components/astro/ScheduleList.astro'
+import LiveStatus from '../components/react/LiveStatus.jsx'
+import SectionPanel from '../components/astro/SectionPanel.astro'
+import LocalTime from '../components/astro/LocalTime.astro'
+import { getData, getLiveSnapshot, getUpcomingSegments } from '../lib/data.js'
+import { site, urls } from '../config/site.mjs'
+
+const twitch = getData('twitch')
+const segments = getUpcomingSegments(25)
+const live = getLiveSnapshot()
+const scheduleCheckedAt = twitch.partFetchedAt?.schedule ?? twitch.fetchedAt
+---
+<BaseLayout title="Stream schedule" description="Upcoming MasstarVT streams, shown in your time zone.">
+  <PageHeader eyebrow="Schedule" title="When I'm live" subtitle="Upcoming streams for the next two weeks, in your own time zone. Plans change — the Discord always has the latest.">
+    <div class="offline-card-actions">
+      <a class="cta-button primary" href="/schedule.ics">Add to calendar</a>
+      <a class="cta-button ghost" href={urls.twitchSchedule} target="_blank" rel="noopener noreferrer">Schedule on Twitch ↗</a>
+    </div>
+  </PageHeader>
+
+  <SectionPanel id="now" title="Right now">
+    <LiveStatus client:load live={live} login={site.twitch.login} offlineImage={twitch.user.banner} scheduleLink={false} />
+  </SectionPanel>
+
+  <SectionPanel id="upcoming" title="Upcoming streams" subtitle="Times update to your time zone automatically.">
+    <div class="schedule-block">
+      <ScheduleList segments={segments} vacation={twitch.schedule.vacation} limit={25} />
+      <p class="schedule-note" data-local-zone>Times shown in UTC.</p>
+      {scheduleCheckedAt && <p class="updated-note">Schedule checked <LocalTime iso={scheduleCheckedAt} kind="relative" />.</p>}
+    </div>
+  </SectionPanel>
+</BaseLayout>

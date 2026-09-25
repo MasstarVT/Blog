@@ -1,0 +1,22 @@
+---
+// TikTok profile card. The official creator embed (and TikTok's tracking) loads only on click.
+import Icon from '../Icon.astro'
+import { site, urls } from '../../../config/site.mjs'
+
+const handle = site.tiktok.handle
+---
+{handle && (
+  <div class="tiktok-card" data-tiktok-card data-handle={handle}>
+    <div class="follow-card">
+      <span class="follow-icon"><Icon name="tiktok" size={26} /></span>
+      <div>
+        <strong>@{handle} on TikTok</strong>
+        <p>Short clips and stream highlights.</p>
+        <div class="offline-card-actions">
+          <button type="button" class="cta-button ghost" data-tiktok-load>Show latest TikToks</button>
+          <a class="cta-button ghost" href={urls.tiktok} target="_blank" rel="noopener noreferrer">Open TikTok ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+)}

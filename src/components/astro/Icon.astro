@@ -1,0 +1,16 @@
+---
+import { icons } from '../../config/icons.mjs'
+
+interface Props {
+  name: keyof typeof icons
+  size?: number
+  class?: string
+}
+const { name, size = 22, class: className } = Astro.props
+const icon: { viewBox: string; d: string; fillRule?: 'evenodd' | 'nonzero' } | undefined = icons[name] as any
+---
+{icon && (
+  <svg width={size} height={size} viewBox={icon.viewBox} fill="currentColor" class={className} aria-hidden="true">
+    <path d={icon.d} fill-rule={icon.fillRule} />
+  </svg>
+)}

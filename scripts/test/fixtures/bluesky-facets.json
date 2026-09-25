@@ -1,0 +1,347 @@
+{
+  "feed": [
+    {
+      "post": {
+        "uri": "at://did:plc:testauthor000000000000/app.bsky.feed.post/3aaaaaaaaaaaa",
+        "cid": "bafyA",
+        "author": {
+          "did": "did:plc:testauthor000000000000",
+          "handle": "mass.masstar.org",
+          "displayName": "Mass 🔥❄️",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:testauthor000000000000/avatar@jpeg"
+        },
+        "record": {
+          "$type": "app.bsky.feed.post",
+          "createdAt": "2026-09-20T18:00:00.000Z",
+          "text": "🔥🎮 Going live soon! https://twitch.tv/masstarvt with @friend.bsky.social #VTuber — also a sneaky link and http://plain.example ✨",
+          "facets": [
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 79,
+                "byteEnd": 86
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#tag",
+                  "tag": "VTuber"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 26,
+                "byteEnd": 53
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "https://twitch.tv/masstarvt"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 59,
+                "byteEnd": 78
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#mention",
+                  "did": "did:plc:friend0000000000000000"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 98,
+                "byteEnd": 109
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "javascript:alert(1)"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 114,
+                "byteEnd": 134
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "http://plain.example"
+                }
+              ]
+            }
+          ]
+        },
+        "embed": {
+          "$type": "app.bsky.embed.recordWithMedia#view",
+          "record": {
+            "$type": "app.bsky.embed.record#view",
+            "record": {
+              "uri": "at://did:plc:x/app.bsky.feed.post/3q"
+            }
+          },
+          "media": {
+            "$type": "app.bsky.embed.images#view",
+            "images": [
+              {
+                "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:testauthor000000000000/img1@jpeg",
+                "fullsize": "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:testauthor000000000000/img1@jpeg",
+                "alt": "Stream overlay"
+              },
+              {
+                "thumb": "javascript:alert(2)",
+                "fullsize": "javascript:alert(2)",
+                "alt": "bad"
+              }
+            ]
+          }
+        },
+        "likeCount": 12,
+        "repostCount": 3,
+        "replyCount": 2,
+        "indexedAt": "2026-09-20T18:00:01.000Z"
+      }
+    },
+    {
+      "post": {
+        "uri": "at://did:plc:friend0000000000000000/app.bsky.feed.post/3bbbbbbbbbbbb",
+        "cid": "bafyB",
+        "author": {
+          "did": "did:plc:friend0000000000000000",
+          "handle": "friend.bsky.social",
+          "displayName": "",
+          "avatar": "http://insecure.example/avatar.jpg"
+        },
+        "record": {
+          "$type": "app.bsky.feed.post",
+          "createdAt": "2026-09-19T10:00:00.000Z",
+          "text": "Great article about streaming setups"
+        },
+        "embed": {
+          "$type": "app.bsky.embed.external#view",
+          "external": {
+            "uri": "https://example.com/setup",
+            "title": "Streaming setups",
+            "description": "A guide",
+            "thumb": "https://cdn.bsky.app/img/external/thumb@jpeg"
+          }
+        },
+        "likeCount": 40,
+        "repostCount": 5,
+        "replyCount": 1,
+        "indexedAt": "2026-09-19T10:00:01.000Z"
+      },
+      "reason": {
+        "$type": "app.bsky.feed.defs#reasonRepost",
+        "by": {
+          "did": "did:plc:testauthor000000000000",
+          "handle": "mass.masstar.org",
+          "displayName": "Mass 🔥❄️",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:testauthor000000000000/avatar@jpeg"
+        },
+        "indexedAt": "2026-09-21T00:00:00.000Z"
+      }
+    },
+    {
+      "post": {
+        "uri": "at://did:plc:testauthor000000000000/app.bsky.feed.post/3aaaaaaaaaaaa",
+        "cid": "bafyA",
+        "author": {
+          "did": "did:plc:testauthor000000000000",
+          "handle": "mass.masstar.org",
+          "displayName": "Mass 🔥❄️",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:testauthor000000000000/avatar@jpeg"
+        },
+        "record": {
+          "$type": "app.bsky.feed.post",
+          "createdAt": "2026-09-20T18:00:00.000Z",
+          "text": "🔥🎮 Going live soon! https://twitch.tv/masstarvt with @friend.bsky.social #VTuber — also a sneaky link and http://plain.example ✨",
+          "facets": [
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 79,
+                "byteEnd": 86
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#tag",
+                  "tag": "VTuber"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 26,
+                "byteEnd": 53
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "https://twitch.tv/masstarvt"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 59,
+                "byteEnd": 78
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#mention",
+                  "did": "did:plc:friend0000000000000000"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 98,
+                "byteEnd": 109
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "javascript:alert(1)"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 114,
+                "byteEnd": 134
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "http://plain.example"
+                }
+              ]
+            }
+          ]
+        },
+        "embed": {
+          "$type": "app.bsky.embed.recordWithMedia#view",
+          "record": {
+            "$type": "app.bsky.embed.record#view",
+            "record": {
+              "uri": "at://did:plc:x/app.bsky.feed.post/3q"
+            }
+          },
+          "media": {
+            "$type": "app.bsky.embed.images#view",
+            "images": [
+              {
+                "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:testauthor000000000000/img1@jpeg",
+                "fullsize": "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:testauthor000000000000/img1@jpeg",
+                "alt": "Stream overlay"
+              },
+              {
+                "thumb": "javascript:alert(2)",
+                "fullsize": "javascript:alert(2)",
+                "alt": "bad"
+              }
+            ]
+          }
+        },
+        "likeCount": 12,
+        "repostCount": 3,
+        "replyCount": 2,
+        "indexedAt": "2026-09-20T18:00:01.000Z"
+      }
+    },
+    {
+      "post": {
+        "uri": "at://did:plc:testauthor000000000000/app.bsky.feed.post/3cccccccccccc",
+        "cid": "bafyC",
+        "author": {
+          "did": "did:plc:testauthor000000000000",
+          "handle": "mass.masstar.org",
+          "displayName": "Mass 🔥❄️",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:testauthor000000000000/avatar@jpeg"
+        },
+        "record": {
+          "$type": "app.bsky.feed.post",
+          "createdAt": "2026-09-18T10:00:00.000Z",
+          "text": "Broken facets 😀 still render",
+          "facets": [
+            {
+              "index": {
+                "byteStart": 0,
+                "byteEnd": 999
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "https://out-of-range.example"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 0,
+                "byteEnd": 6
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "https://first.example"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 0,
+                "byteEnd": 13
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#link",
+                  "uri": "https://overlap.example"
+                }
+              ]
+            },
+            {
+              "$type": "app.bsky.richtext.facet",
+              "index": {
+                "byteStart": 25,
+                "byteEnd": 31
+              },
+              "features": [
+                {
+                  "$type": "app.bsky.richtext.facet#mention",
+                  "did": "not a did"
+                }
+              ]
+            }
+          ]
+        },
+        "embed": {
+          "$type": "app.bsky.embed.external#view",
+          "external": {
+            "uri": "javascript:alert(3)",
+            "title": "x",
+            "description": "y"
+          }
+        },
+        "indexedAt": "2026-09-18T10:00:01.000Z"
+      }
+    }
+  ]
+}

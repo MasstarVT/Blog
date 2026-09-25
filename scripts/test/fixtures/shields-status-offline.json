@@ -1,0 +1,10 @@
+{
+  "label": "twitch",
+  "message": "offline",
+  "color": "lightgrey",
+  "link": [
+    "https://www.twitch.tv/masstarvt"
+  ],
+  "name": "twitch",
+  "value": "offline"
+}

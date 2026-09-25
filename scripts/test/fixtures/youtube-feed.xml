@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw"/>
+ <id>yt:channel:XuqSBlHAE6Xw-yeJA0Tunw</id>
+ <yt:channelId>XuqSBlHAE6Xw-yeJA0Tunw</yt:channelId>
+ <title>Linus Tech Tips</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw"/>
+ <author>
+  <name>Linus Tech Tips</name>
+  <uri>https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw</uri>
+ </author>
+ <published>2008-11-25T00:46:52+00:00</published>
+  <entry>
+  <id>yt:video:DLOQOUWmRpI</id>
+  <yt:videoId>DLOQOUWmRpI</yt:videoId>
+  <yt:channelId>UCXuqSBlHAE6Xw-yeJA0Tunw</yt:channelId>
+  <title>The Apple Product I Still Fanboy Over - AirPods 5 Review</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=DLOQOUWmRpI"/>
+  <author>
+   <name>Linus Tech Tips</name>
+   <uri>https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw</uri>
+  </author>
+  <published>2026-09-24T18:18:23+00:00</published>
+  <updated>2026-09-24T22:55:00+00:00</updated>
+  <media:group>
+   <media:title>The Apple Product I Still Fanboy Over - AirPods 5 Review</media:title>
+   <media:content url="https://www.youtube.com/v/DLOQOUWmRpI?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/DLOQOUWmRpI/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Shop Seasonic PSUs here: https://lmg.gg/seasonic</media:description>
+   <media:community>
+    <media:starRating count="12736" average="5.00" min="1" max="5"/>
+    <media:statistics views="831577"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:p-EXFD_DHmc</id>
+  <yt:videoId>p-EXFD_DHmc</yt:videoId>
+  <yt:channelId>UCXuqSBlHAE6Xw-yeJA0Tunw</yt:channelId>
+  <title>leaking the newest lttstore products...</title>
+  <link rel="alternate" href="https://www.youtube.com/shorts/p-EXFD_DHmc"/>
+  <author>
+   <name>Linus Tech Tips</name>
+   <uri>https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw</uri>
+  </author>
+  <published>2026-09-24T16:25:01+00:00</published>
+  <updated>2026-09-25T11:18:31+00:00</updated>
+  <media:group>
+   <media:title>leaking the newest lttstore products...</media:title>
+   <media:content url="https://www.youtube.com/v/p-EXFD_DHmc?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/p-EXFD_DHmc/hqdefault.jpg" width="480" height="360"/>
+   <media:description>lmg.gg/nexigo</media:description>
+   <media:community>
+    <media:starRating count="4139" average="5.00" min="1" max="5"/>
+    <media:statistics views="150996"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:XM04mbymDsE</id>
+  <yt:videoId>XM04mbymDsE</yt:videoId>
+  <yt:channelId>UCXuqSBlHAE6Xw-yeJA0Tunw</yt:channelId>
+  <title>The Most Permanent Tech Upgrade of All Time - AMD $5000 Ultimate Tech Upgrade</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=XM04mbymDsE"/>
+  <author>
+   <name>Linus Tech Tips</name>
+   <uri>https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw</uri>
+  </author>
+  <published>2026-09-23T17:30:27+00:00</published>
+  <updated>2026-09-24T04:20:56+00:00</updated>
+  <media:group>
+   <media:title>The Most Permanent Tech Upgrade of All Time - AMD $5000 Ultimate Tech Upgrade</media:title>
+   <media:content url="https://www.youtube.com/v/XM04mbymDsE?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/XM04mbymDsE/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Thanks to AMD for being a great partner and sponsoring this series! Check out their latest offerings at https://lmg.gg/f6PMg</media:description>
+   <media:community>
+    <media:starRating count="37083" average="5.00" min="1" max="5"/>
+    <media:statistics views="2223233"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>

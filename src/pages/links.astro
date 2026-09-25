@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageHeader from '../layouts/PageHeader.astro'
+import LinkGrid from '../components/react/LinkGrid.jsx'
+import { site } from '../config/site.mjs'
+---
+<BaseLayout title="Links" description="Every MasstarVT link in one place — Twitch, Discord, X, Bluesky, Ko-fi, Throne and more.">
+  <PageHeader eyebrow="Links" title="Find me everywhere" subtitle="Streams, community, support and code — all the places I hang out." />
+  <LinkGrid client:visible variant="full" links={site.links} groups={site.linkGroups} />
+</BaseLayout>

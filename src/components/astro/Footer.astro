@@ -1,0 +1,16 @@
+---
+import { site } from '../../config/site.mjs'
+const year = new Date().getFullYear()
+---
+<footer class="footer reveal">
+  <p>&copy; {year} {site.name}. All rights reserved.</p>
+  <div class="footer-links">
+    <span>Made with ❤️ for the community</span>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/rss.xml">RSS</a>
+      <a href="/schedule.ics">Calendar</a>
+      <a href={site.mainSite} target="_blank" rel="noopener noreferrer">masstar.org</a>
+      <a href="https://github.com/MasstarVT/Blog" target="_blank" rel="noopener noreferrer">Source</a>
+    </nav>
+  </div>
+</footer>

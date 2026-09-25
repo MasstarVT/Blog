@@ -1,0 +1,44 @@
+---
+// Grid of Twitch VODs / clips or YouTube videos. Each card is a plain link; embed-facade.js turns
+// a click into an inline player (nothing third-party loads until then, besides the thumbnail).
+import LocalTime from './LocalTime.astro'
+import Icon from './Icon.astro'
+import { formatCount, formatDuration } from '../../lib/format.mjs'
+
+interface Item {
+  id: string
+  title: string
+  url: string
+  thumbnail: string | null
+  date: string
+  durationSec?: number | null
+  views?: number | null
+  label?: string | null
+}
+interface Props {
+  items: Item[]
+  embed: 'twitch-video' | 'twitch-clip' | 'youtube'
+}
+const { items, embed } = Astro.props
+const TYPE_LABEL: Record<string, string> = { archive: 'VOD', highlight: 'Highlight', upload: 'Upload' }
+---
+<ul class="video-grid">
+  {items.map((v) => (
+    <li>
+      <a class="video-card" href={v.url} target="_blank" rel="noopener noreferrer" data-embed={embed} data-id={v.id} data-title={v.title}>
+        <div class="video-thumb">
+          {v.thumbnail
+            ? <img src={v.thumbnail} alt="" loading="lazy" decoding="async" width="320" height="180" referrerpolicy="no-referrer" />
+            : <span class="video-thumb-fallback"><Icon name={embed === 'youtube' ? 'youtube' : 'twitch'} size={34} /></span>}
+          {v.label && <span class="video-type">{TYPE_LABEL[v.label] ?? v.label}</span>}
+          {v.durationSec ? <span class="video-badge">{formatDuration(v.durationSec)}</span> : null}
+        </div>
+        <span class="video-title">{v.title}</span>
+        <span class="video-meta">
+          <LocalTime iso={v.date} kind="relative" />
+          {v.views != null && <> · {formatCount(v.views)} views</>}
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>

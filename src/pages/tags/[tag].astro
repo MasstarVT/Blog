@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHeader from '../../layouts/PageHeader.astro'
+import PostCard from '../../components/astro/PostCard.astro'
+import TagChip from '../../components/astro/TagChip.astro'
+import { getPublishedPosts, getTags } from '../../lib/posts.js'
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts()
+  const tags = getTags(posts)
+  return tags.map(({ tag, slug }) => ({
+    params: { tag: slug },
+    props: { tag, posts: posts.filter((p) => p.data.tags.includes(tag)), tags },
+  }))
+}
+
+const { tag, posts, tags } = Astro.props
+---
+<BaseLayout title={`#${tag}`} description={`MasstarVT blog posts tagged #${tag}.`}>
+  <PageHeader eyebrow="Tag" title={`#${tag}`} subtitle={`${posts.length} post${posts.length === 1 ? '' : 's'}`}>
+    <ul class="tag-cloud" aria-label="All tags">
+      {tags.map((t: { tag: string; count: number }) => <li><TagChip tag={t.tag} count={t.count} current={t.tag === tag} /></li>)}
+    </ul>
+  </PageHeader>
+  <ul class="post-list">
+    {posts.map((post: any) => <li><PostCard post={post} headingLevel={2} /></li>)}
+  </ul>
+</BaseLayout>

@@ -1,0 +1,62 @@
+{
+  "data": [
+    {
+      "id": "2300000001",
+      "stream_id": "40000000000",
+      "user_id": "139905616",
+      "user_login": "masstarvt",
+      "user_name": "MasstarVT",
+      "title": "Swimming in a new sea",
+      "description": "",
+      "created_at": "2026-05-15T21:34:40Z",
+      "published_at": "2026-05-15T21:34:40Z",
+      "url": "https://www.twitch.tv/videos/2300000001",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/cf_vods/d2nvs31859zcd8/abc_masstarvt_40000000000_1747344872//thumb/thumb0-%{width}x%{height}.jpg",
+      "viewable": "public",
+      "view_count": 88,
+      "language": "en",
+      "type": "archive",
+      "duration": "3h2m1s",
+      "muted_segments": null
+    },
+    {
+      "id": "2300000002",
+      "stream_id": null,
+      "user_id": "139905616",
+      "user_login": "masstarvt",
+      "user_name": "MasstarVT",
+      "title": "Best moments",
+      "description": "",
+      "created_at": "2026-05-16T10:00:00Z",
+      "published_at": "2026-05-16T10:00:00Z",
+      "url": "https://www.twitch.tv/videos/2300000002",
+      "thumbnail_url": "https://vod-secure.twitch.tv/_404/404_processing_%{width}x%{height}.png",
+      "viewable": "public",
+      "view_count": 12,
+      "language": "en",
+      "type": "highlight",
+      "duration": "45s",
+      "muted_segments": null
+    },
+    {
+      "id": "2300000003",
+      "stream_id": null,
+      "user_id": "139905616",
+      "user_login": "masstarvt",
+      "user_name": "MasstarVT",
+      "title": "Upload",
+      "description": "",
+      "created_at": "2026-05-17T10:00:00Z",
+      "published_at": "2026-05-17T10:00:00Z",
+      "url": "https://www.twitch.tv/videos/2300000003",
+      "thumbnail_url": "",
+      "viewable": "public",
+      "view_count": 3,
+      "language": "en",
+      "type": "upload",
+      "duration": "12m",
+      "muted_segments": null
+    }
+  ],
+  "pagination": { "cursor": "eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6M319" }
+}

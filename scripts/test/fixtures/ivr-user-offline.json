@@ -1,0 +1,26 @@
+[
+  {
+    "banned": false,
+    "displayName": "MasstarVT",
+    "login": "masstarvt",
+    "id": "139905616",
+    "bio": "Herro, my name is Mass. 18+ he/him. I am a VTuber who streams exclusively on Twitch. I like video games and I have almost 5000 steam games. I enjoy collaborating with friends and meeting new VTubers. I dislike mushrooms and being bonked.",
+    "follows": null,
+    "followers": 116,
+    "logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/0ac3cd9f-6965-4e36-933d-39b5739ceb43-profile_image-600x600.png",
+    "banner": "https://static-cdn.jtvnw.net/jtv_user_pictures/8a3a3b95-49f0-4db0-962e-cd0883da9294-profile_banner-480.png",
+    "createdAt": "2016-11-19T20:11:46.490902Z",
+    "roles": {
+      "isPreAffiliate": false,
+      "isAffiliate": true,
+      "isPartner": false,
+      "isStaff": null
+    },
+    "chatterCount": 5,
+    "stream": null,
+    "lastBroadcast": {
+      "startedAt": "2026-05-15T21:34:32.096729Z",
+      "title": "Swimming in a new sea with @Urgirlfriendpai"
+    }
+  }
+]

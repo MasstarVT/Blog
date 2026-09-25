@@ -1,0 +1,100 @@
+name: Build & deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Deploy even if the social data did not change
+        type: boolean
+        default: false
+  schedule:
+    # Refresh schedule / VODs / clips / socials. Off the top of the hour because GitHub's
+    # scheduler is busiest (and most likely to delay or drop runs) at :00.
+    - cron: '17,47 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      deploy: ${{ steps.gate.outputs.deploy }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+      # The only step that sees secrets. Every source falls back to the last deployed data on failure.
+      - name: Fetch social data
+        run: node scripts/fetch-data.mjs
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      # Scheduled runs only deploy when data changed, a scheduled post became due, or the last deploy is >6h old.
+      - name: Decide whether to deploy
+        id: gate
+        run: node scripts/data-changed.mjs --event "${{ github.event_name }}" --force "${{ inputs.force || 'false' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Type & content check
+        if: github.event_name != 'schedule'
+        run: npx astro check
+
+      - name: Build
+        if: steps.gate.outputs.deploy == 'true'
+        run: npx astro build
+
+      - name: Check build output
+        if: steps.gate.outputs.deploy == 'true'
+        run: npm run test:dist
+        env:
+          # only used to assert that no secret value leaked into dist/
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      - name: Upload site
+        if: steps.gate.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.deploy == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

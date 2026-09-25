@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHeader from '../../layouts/PageHeader.astro'
+import PostCard from '../../components/astro/PostCard.astro'
+import TagChip from '../../components/astro/TagChip.astro'
+import EmptyState from '../../components/astro/EmptyState.astro'
+import Reveal from '../../components/astro/Reveal.astro'
+import { getPublishedPosts, getTags } from '../../lib/posts.js'
+
+const posts = await getPublishedPosts()
+const tags = getTags(posts)
+---
+<BaseLayout title="Blog" description="Stream recaps, dev logs and stories from MasstarVT.">
+  <PageHeader eyebrow="Blog" title="Posts & stories" subtitle="Stream recaps, behind-the-scenes on the overlays and games I build, and whatever else is on my mind.">
+    {tags.length > 0 && (
+      <ul class="tag-cloud" aria-label="Tags">
+        {tags.map(({ tag, count }) => <li><TagChip tag={tag} count={count} /></li>)}
+      </ul>
+    )}
+  </PageHeader>
+
+  {posts.length
+    ? (
+      <ul class="post-list">
+        {posts.map((post, i) => (
+          <li><Reveal delay={Math.min(i, 5) * 0.05}><PostCard post={post} headingLevel={2} showCover /></Reveal></li>
+        ))}
+      </ul>
+    )
+    : <EmptyState title="No posts yet" text="The first one is coming soon." />}
+</BaseLayout>

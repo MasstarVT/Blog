@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageHeader from '../../layouts/PageHeader.astro'
+import TagChip from '../../components/astro/TagChip.astro'
+import EmptyState from '../../components/astro/EmptyState.astro'
+import { getPublishedPosts, getTags } from '../../lib/posts.js'
+
+const tags = getTags(await getPublishedPosts())
+---
+<BaseLayout title="Tags" description="Browse MasstarVT blog posts by topic.">
+  <PageHeader eyebrow="Blog" title="Tags" subtitle="Browse posts by topic." />
+  <section class="hub-panel">
+    {tags.length
+      ? <ul class="tag-cloud">{tags.map(({ tag, count }) => <li><TagChip tag={tag} count={count} /></li>)}</ul>
+      : <EmptyState title="No tags yet" />}
+  </section>
+</BaseLayout>

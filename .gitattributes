@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.ico binary
+*.webp binary
+# iCalendar fixtures must keep their CRLF line endings
+scripts/test/fixtures/*.ics -text

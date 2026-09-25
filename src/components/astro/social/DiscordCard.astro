@@ -1,0 +1,23 @@
+---
+// Discord server card from the public invite endpoint (no widget setup needed).
+// social-refresh.js refreshes the counts in the browser.
+import Icon from '../Icon.astro'
+import { getData } from '../../../lib/data.js'
+import { formatCount } from '../../../lib/format.mjs'
+import { site } from '../../../config/site.mjs'
+
+const d = getData('discord')
+---
+<div class="discord-card" data-discord-card data-invite={site.discord.invite}>
+  {d.iconUrl
+    ? <img class="discord-icon" src={d.iconUrl} alt="" width="64" height="64" loading="lazy" referrerpolicy="no-referrer" data-discord-icon />
+    : <span class="discord-icon"><Icon name="discord" size={34} /></span>}
+  <div>
+    <div class="discord-name" data-discord-name>{d.name ?? 'Discord server'}</div>
+    <div class="discord-counts">
+      <span><span class="online-dot" aria-hidden="true"></span><span data-discord-online>{formatCount(d.online)}</span> online</span>
+      <span><span class="member-dot" aria-hidden="true"></span><span data-discord-members>{formatCount(d.members)}</span> members</span>
+    </div>
+    <a class="cta-button primary" href={d.inviteUrl} target="_blank" rel="noopener noreferrer">Join the Discord</a>
+  </div>
+</div>

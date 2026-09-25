@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets'
+import LocalTime from './LocalTime.astro'
+import TagChip from './TagChip.astro'
+import { postUrl } from '../../lib/posts.js'
+
+interface Props {
+  post: any
+  headingLevel?: 2 | 3
+  showCover?: boolean
+}
+const { post, headingLevel = 3, showCover = false } = Astro.props
+const { title, description, pubDate, tags, cover, coverAlt, draft } = post.data
+const Heading: any = `h${headingLevel}`
+---
+<article class="post-card">
+  {showCover && cover && (
+    <div class="post-card-cover">
+      <Image src={cover} alt={coverAlt ?? ''} width={720} />
+    </div>
+  )}
+  <div class="post-meta">
+    <LocalTime iso={pubDate.toISOString()} kind="date" utc />
+    <span class="dot">{post.minutes} min read</span>
+    {draft && <span class="chip draft-chip">Draft</span>}
+  </div>
+  <Heading class="post-card-title"><a href={postUrl(post)}>{title}</a></Heading>
+  {description && <p class="post-card-desc">{description}</p>}
+  {tags.length > 0 && (
+    <ul class="tag-row" aria-label="Tags">
+      {tags.map((tag: string) => <li><TagChip tag={tag} /></li>)}
+    </ul>
+  )}
+</article>

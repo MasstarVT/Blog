@@ -1,0 +1,13 @@
+---
+import { tagUrl } from '../../lib/posts.js'
+
+interface Props {
+  tag: string
+  count?: number
+  current?: boolean
+}
+const { tag, count, current } = Astro.props
+---
+<a class="tag-chip" href={tagUrl(tag)} aria-current={current ? 'page' : undefined}>
+  #{tag}{count != null && <span class="count">{count}</span>}
+</a>

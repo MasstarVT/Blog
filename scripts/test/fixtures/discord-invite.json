@@ -1,0 +1,36 @@
+{
+  "type": 0,
+  "code": "EgSGhrVqQw",
+  "expires_at": null,
+  "flags": 2,
+  "guild": {
+    "id": "1222593381981618226",
+    "name": "Mass's Hideout",
+    "splash": null,
+    "banner": null,
+    "description": null,
+    "icon": "53cc328a78bfd77b6d5ca8f53de1962e",
+    "features": [
+      "TIERLESS_BOOSTING_SYSTEM_MESSAGE",
+      "SOUNDBOARD",
+      "GUILD_TAGS",
+      "TIERLESS_BOOSTING",
+      "COMMUNITY",
+      "NEWS"
+    ],
+    "verification_level": 2,
+    "vanity_url_code": null,
+    "nsfw_level": 0,
+    "nsfw": false,
+    "premium_subscription_count": 3,
+    "premium_tier": 0
+  },
+  "guild_id": "1222593381981618226",
+  "channel": {
+    "id": "1222593384204603443",
+    "type": 0,
+    "name": "the-entrance"
+  },
+  "approximate_member_count": 48,
+  "approximate_presence_count": 18
+}

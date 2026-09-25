@@ -1,0 +1,58 @@
+---
+// X / Twitter. Everything here is readable without loading anything from X:
+//  - `posts` (optional X API provider) and `featured` (hand-picked in src/data/x-posts.json) render as
+//    themed copies of X's official blockquote embed markup; x-embed.js upgrades them to real embeds
+//    when they scroll into view (and leaves the themed card if X is blocked).
+//  - The optional official profile timeline tries to load; if it hasn't rendered within 6s it is
+//    removed and the cards / follow card remain.
+import Icon from '../Icon.astro'
+import LocalTime from '../LocalTime.astro'
+import { getData } from '../../../lib/data.js'
+import { site } from '../../../config/site.mjs'
+
+const x = getData('x')
+const seen = new Set()
+const cards = [...x.posts, ...x.featured]
+  .filter((p) => (seen.has(p.id) ? false : seen.add(p.id)))
+  .slice(0, site.x.maxPosts)
+const profileUrl = x.profileUrl
+---
+<div class="x-feed" data-x-feed>
+  {site.x.timelineEmbed && (
+    <div class="x-timeline-slot" data-x-timeline data-state="idle">
+      <a
+        class="twitter-timeline"
+        data-theme="dark"
+        data-dnt="true"
+        data-height="560"
+        data-chrome="noheader nofooter transparent"
+        href={`https://twitter.com/${site.x.handle}`}
+      >Posts by @{site.x.handle}</a>
+    </div>
+  )}
+
+  {cards.length > 0 && (
+    <ul class="feed-list" data-x-cards>
+      {cards.map((p) => (
+        <li>
+          <blockquote class="twitter-tweet feed-card x-post" data-theme="dark" data-dnt="true" data-conversation="none">
+            {p.text && <p class="post-text">{p.text}</p>}
+            <footer>
+              &mdash; {p.authorName ?? site.name} (@{p.authorHandle ?? site.x.handle}){' '}
+              <a href={p.url}>{p.createdAt ? <LocalTime iso={p.createdAt} kind="date" /> : 'View on X'}</a>
+            </footer>
+          </blockquote>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <div class="follow-card" data-x-follow hidden={cards.length > 0 || site.x.timelineEmbed}>
+    <span class="follow-icon"><Icon name="x" size={26} /></span>
+    <div>
+      <strong>@{site.x.handle} on X</strong>
+      <p>Stream announcements, clips and random thoughts.</p>
+      <a class="cta-button ghost" href={profileUrl} target="_blank" rel="noopener noreferrer">Follow on X ↗</a>
+    </div>
+  </div>
+</div>

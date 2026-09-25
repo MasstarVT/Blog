@@ -1,0 +1,60 @@
+---
+// Latest Bluesky posts, rendered from build data as plain text segments (never raw HTML).
+// src/scripts/social-refresh.js re-fetches the public feed in the browser and re-renders newer posts.
+import LocalTime from '../LocalTime.astro'
+import EmptyState from '../EmptyState.astro'
+import { getData } from '../../../lib/data.js'
+import { site } from '../../../config/site.mjs'
+
+interface Props {
+  limit?: number
+}
+const { limit = site.bluesky.maxPosts } = Astro.props
+const bsky = getData('bluesky')
+const posts = bsky.posts.slice(0, limit)
+const latest = posts[0]?.createdAt
+---
+<div class="bsky-feed" data-bsky-feed data-handle={bsky.handle} data-limit={limit}>
+  <ul class="feed-list" data-bsky-list>
+    {posts.map((p: any) => (
+      <li class="feed-card bsky-post" data-uri={p.uri}>
+        {p.isRepost && <span class="feed-repost">⟲ Reposted</span>}
+        <div class="feed-head">
+          {p.author.avatar && <img class="feed-avatar" src={p.author.avatar} alt="" loading="lazy" width="38" height="38" referrerpolicy="no-referrer" />}
+          <span class="feed-author">
+            <span class="feed-name">{p.author.displayName || p.author.handle}</span>
+            <span class="feed-handle">@{p.author.handle}</span>
+          </span>
+          <span class="feed-meta"><a href={p.url} target="_blank" rel="noopener noreferrer"><LocalTime iso={p.createdAt} kind="date" /></a></span>
+        </div>
+        <p class="post-text">{p.segments.map((s: any) => s.href
+          ? <a href={s.href} target="_blank" rel="noopener noreferrer nofollow">{s.text}</a>
+          : s.text)}</p>
+        {p.images.length > 0 && (
+          <div class="post-images">
+            {p.images.slice(0, 4).map((img: { thumb: string; full: string; alt: string }, i: number, all: unknown[]) => (
+              <a href={img.full} target="_blank" rel="noopener noreferrer"><img src={img.thumb} alt={img.alt || `Image ${i + 1} of ${all.length} attached to this post`} loading="lazy" referrerpolicy="no-referrer" /></a>
+            ))}
+          </div>
+        )}
+        {p.external && (
+          <a class="post-external" href={p.external.uri} target="_blank" rel="noopener noreferrer nofollow">
+            {p.external.thumb && <img src={p.external.thumb} alt="" loading="lazy" referrerpolicy="no-referrer" />}
+            <span><strong>{p.external.title || p.external.uri}</strong><span>{p.external.description}</span></span>
+          </a>
+        )}
+        <div class="post-counts">
+          <span aria-hidden="true">♡ {p.counts.likes}</span><span aria-hidden="true">⟲ {p.counts.reposts}</span><span aria-hidden="true">💬 {p.counts.replies}</span>
+          <span class="sr-only">{p.counts.likes} likes, {p.counts.reposts} reposts, {p.counts.replies} replies</span>
+        </div>
+      </li>
+    ))}
+  </ul>
+  {posts.length === 0 && (
+    <EmptyState title="No Bluesky posts yet" text="Posts will show up here once there's something new." action={{ href: bsky.profileUrl, label: 'Open Bluesky ↗' }} />
+  )}
+  <div class="feed-footer">
+    {latest && <span class="feed-stale">Last post <LocalTime iso={latest} kind="relative" /></span>}
+    <a class="panel-action" href={bsky.profileUrl} target="_blank" rel="noopener noreferrer">More on Bluesky ↗</a>
+  </div>
+</div>

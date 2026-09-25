@@ -1,0 +1,5 @@
+{
+  "error": "Not Found",
+  "status": 404,
+  "message": "segments were either not found or have not been created yet"
+}
